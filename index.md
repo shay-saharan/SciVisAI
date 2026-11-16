@@ -69,7 +69,7 @@ Feedback on existing content
 ### About This Project
 This resource hub is led by [Shehryar (Shay) Saharan](mailto:s.saharan@utoronto.ca), [Derek Ng](mailto:d.ng@utoronto.ca), and [Nick Woolridge](mailto:n.woolridge@utoronto.ca) at [Biomedical Communications, University of Toronto](https://bmc.med.utoronto.ca/).
 
-Collaborators: Sania Khurshid, **Joseph Henein**, Tristy Liu, and **Kelsey Zhao**.
+Collaborators: Sania Khurshid, Joseph Henein, Tristy Liu, Sandy Marshall, and Kelsey Zhao.
 
 <img src="Logo_BMC.png" alt="Biomedical Communications, University of Toronto logo" style="width: 100%; max-width: 250px; height: auto;">
 

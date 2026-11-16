@@ -1,33 +1,15 @@
 ---
 title: Resources
 nav_order: 9
+has_children: true
 layout: default
 ---
 
 # Resources
 
-A curated list of papers and publications relevant to AI in scientific and medical visualization.
+Explore selected articles, reports, and papers on AI in scientific and medical visualization, or use the glossary to look up key terms.
 
-| Name | Link | Summary |
-|------|------|---------|
-|"It looks sexy but it's wrong." Tensions in creativity and accuracy using genAI for biomedical visualization|[Link](https://arxiv.org/abs/2507.14494)  | Through interviews with biomedical visualization practitioners, this study maps attitudes toward genAI (from enthusiastic adoption to skeptical avoidance), centering concerns about accuracy and trust. With public confidence in science already fragile, the authors argue human oversight is non-negotiable. |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
-|  | [Link](#) |  |
+## Sections
+
+- [Further Reading](further-reading/) — curated resources with short notes on why they may be useful.
+- [Glossary](glossary/) — AI concepts and terminology, with a focus on scientific and medical visualization.
