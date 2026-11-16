@@ -6,7 +6,7 @@ nav_order: 1
 
 <picture>
 	<source media="(max-width: 40rem)" srcset="HomeHeader_Mobile.png">
-	<img src="HomeHeader.png" alt="SciVizAI Header">
+	<img src="HomeHeader.png" alt="SciVisAI Header">
 </picture>
 
 Scientific and medical visualization professionals are navigating a rapidly evolving AI landscape. This resource hub provides field-specific guidance, technical experiments, and ethical frameworks to help practitioners, educators, and students integrate AI tools responsibly into their practice.
@@ -72,9 +72,6 @@ This resource hub is led by [Shehryar (Shay) Saharan](mailto:s.saharan@utoronto.
 Collaborators: Sania Khurshid, Joseph Henein, Tristy Liu, Sandy Marshall, and Kelsey Zhao.
 
 <img src="Logo_BMC.png" alt="Biomedical Communications, University of Toronto logo" style="width: 100%; max-width: 250px; height: auto;">
-
-### Questions or feedback?
-[Contact information]
 
 ## Information Hierarchy
 
