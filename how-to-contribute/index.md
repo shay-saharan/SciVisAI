@@ -1,10 +1,10 @@
 ---
-title: How to Contribute
+title: Contribute
 nav_order: 10
 layout: default
 ---
 
-# How to Contribute
+# Contribute
 
 SciVizAI is a community resource, shaped and sustained by the people who use it. Community contributions help the site reflect the needs, experience, and perspectives of the scientific visualization community.
 

@@ -2,6 +2,7 @@
 title: Narration
 parent: Case Studies
 nav_order: 3
+nav_exclude: true
 layout: default
 ---
 

@@ -2,6 +2,7 @@
 title: Creating Textures for 3D Visualization
 parent: Case Studies
 nav_order: 1
+nav_exclude: true
 layout: default
 ---
 

@@ -82,7 +82,6 @@ Collaborators: Sania Khurshid, Joseph Henein, Tristy Liu, Sandy Marshall, and Ke
 - [Responsible Use](responsible-use/)
 - [AI in Practice](ai-in-practice/)
 - [Technology Guides](technology-guides/)
-- [Case Studies](case-studies/)
 - [How to Contribute](how-to-contribute/)
 
 ## How to Use This Resource
@@ -94,5 +93,3 @@ This site is organized to support different entry points into AI for scientific 
 - Start with [Understanding AI](foundations/understanding-ai/) for foundational concepts.
 - Visit [Technology Guides](technology-guides/) for practical setup and workflows.
 - Review [Responsible Use](responsible-use/) before production use.
-- Explore [Case Studies](case-studies/) for applied examples.
-

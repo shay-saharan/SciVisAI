@@ -12,7 +12,7 @@ Guidance for legal, environmental, social, and ethical decision-making when usin
 ## Sections
 
 - [Copyright](copyright/)
-- [Attribution](attribution/)
-- [Accuracy](accuracy/)
-- [Social and Cultural Impact](social-and-cultural-impact/)
+- [Attribution](attribution/) (coming soon)
+- [Accuracy](accuracy/) (coming soon)
+- [Social and Cultural Impact](social-and-cultural-impact/) (coming soon)
 - [Environmental Impact](environmental-impact/)

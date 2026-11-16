@@ -1,5 +1,5 @@
 ---
-title: To AI, or not to AI
+title: To AI, or not to AI 🚧
 parent: Foundations
 nav_order: 2
 layout: default
@@ -7,4 +7,4 @@ layout: default
 
 # To AI, or not to AI
 
-Coming soon.
+🚧 This page is under construction. Please check back soon.
