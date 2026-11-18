@@ -61,7 +61,7 @@ The interactive below maps some of the key considerations shaping AI in scientif
 
 <div style="display: flex; align-items: center; gap: 1.5rem; border: 1px solid #d5e5e0; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0; width: 100%; box-sizing: border-box; background-color: #E6F4EE;">
 <img src="{{ '/Assets/postericon.png' | relative_url }}" alt="" aria-hidden="true" style="flex: 0 0 7rem; width: 7rem; height: 7rem; border-radius: 50%; object-fit: cover;">
-<div><strong style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">Downloadable Poster</strong><br>A downloadable version of the landscape will be available here soon.<br><button type="button" class="btn" disabled aria-disabled="true" style="margin-top: 0.75rem; cursor: not-allowed; opacity: 0.6;">Download poster (coming soon)</button></div>
+<div><strong style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">Downloadable Poster</strong><br>Download a high-resolution version of the landscape map.<br><a class="btn text-delta landscape-download" href="{{ '/Assets/hotspots_map/AI_landscape.png' | relative_url }}" download>Download</a></div>
 </div>
 
 ## Beyond Individual Considerations
@@ -78,7 +78,7 @@ SciVisAI is an evolving resource and an ongoing community effort. We invite prac
 
 ## Contributing
 
-This resource hub grows stronger with community participation. We welcome technical experiments and case studies, tool reviews and workflow documentation, teaching materials and pedagogical insights, and feedback on existing content.
+This resource hub grows stronger with community participation. We welcome technical experiments and case studies, tool reviews and workflow documentation, teaching materials and pedagogical insights, and feedback on existing content. [Learn how to contribute]({{ '/how-to-contribute/' | relative_url }}).
 
 ## About This Project
 
