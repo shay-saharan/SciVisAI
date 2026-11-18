@@ -7,7 +7,7 @@ name: ""
 # Expand all nav items by default
 nav_expanded: false
 
-url: https://shay-saharan.github.io/SciVizAI/
+url: https://shay-saharan.github.io
 
 aux_links:
-  Contribute: /SciVizAI/how-to-contribute/
+  Contribute: /SciVisAI/how-to-contribute/
