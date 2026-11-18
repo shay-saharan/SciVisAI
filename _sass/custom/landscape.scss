@@ -1,0 +1,367 @@
+// Interactive landscape map (index.md -> _includes/landscape.html, Assets/js/landscape.js)
+
+@property --ls-x { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --ls-y { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --ls-z { syntax: '<number>'; inherits: true; initial-value: 1; }
+
+.ls {
+  --ls-teal: #369E88;
+  --ls-teal-dark: #25705f;
+  --ls-mint: #E6F4EE;
+  --ls-mint-strong: #d3ebe2;
+  --ls-bg: #E8F5EE;
+  --ls-orange: #E8650A;
+  --ls-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --ls-dur: 800ms;
+  --ls-inset: 1rem;
+  // cqw resolves against .ls itself where these are used, so sizes track the component width, not the viewport.
+  --ls-panel-w: clamp(14.5rem, 32cqw, 22rem);
+  --ls-marker: clamp(44px, 5.4cqw, 58px);
+
+  container-type: inline-size;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0;
+  border: 2px solid rgba(54, 158, 136, 0.55);
+  border-radius: 16px;
+  background: var(--ls-bg);
+  overflow: hidden;
+  isolation: isolate;
+  font-family: 'Libertinus Serif', serif;
+
+  &[hidden] { display: none; }
+}
+
+.ls-map {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.ls-stage {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  transform-origin: 0 0;
+  transform: translate(var(--ls-x), var(--ls-y)) scale(var(--ls-z));
+  transition:
+    --ls-x var(--ls-dur) var(--ls-ease),
+    --ls-y var(--ls-dur) var(--ls-ease),
+    --ls-z var(--ls-dur) var(--ls-ease);
+}
+
+.ls--legacy .ls-stage {
+  transition: transform var(--ls-dur) var(--ls-ease);
+}
+
+.ls--instant .ls-stage { transition: none; }
+
+.ls-image {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+// Markers --------------------------------------------------------------
+
+.ls-pin {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0s linear 0s;
+
+  &.is-dim {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+  }
+}
+
+.ls-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: var(--ls-marker);
+  height: var(--ls-marker);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  // Counter-scale so markers keep their size while the stage zooms.
+  transform: translate(-50%, -50%) scale(calc(1 / var(--ls-z)));
+  -webkit-tap-highlight-color: transparent;
+
+  span {
+    display: grid;
+    place-items: center;
+    width: 72%;
+    height: 72%;
+    border-radius: 50%;
+    background: var(--ls-orange);
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    font-size: clamp(1rem, 2.6cqw, 1.35rem);
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover span { transform: scale(1.1); }
+
+  &:focus-visible {
+    outline: 3px solid var(--ls-teal-dark);
+    outline-offset: 3px;
+  }
+
+  // Orange glow that swells and fades behind the white disc to signal the marker is clickable.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 101, 10, 0.75) 45%, rgba(232, 101, 10, 0) 72%);
+    pointer-events: none;
+    opacity: 0;
+    animation: ls-pulse 2.8s ease-in-out infinite;
+  }
+
+  // White disc, painted above the glow.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(20, 50, 40, 0.28), 0 1px 2px rgba(20, 50, 40, 0.2);
+    pointer-events: none;
+  }
+}
+
+.ls:not(.is-home) .ls-marker::before { animation: none; }
+
+.ls--legacy .ls-marker { transition: transform var(--ls-dur) var(--ls-ease); }
+
+@keyframes ls-pulse {
+  0% { opacity: 0; transform: scale(1); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: scale(2.1); }
+}
+
+// Home button and panel controls ----------------------------------------
+
+.ls-home,
+.ls-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--ls-teal);
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 3px solid var(--ls-teal-dark);
+    outline-offset: 2px;
+  }
+}
+
+.ls-home {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(20, 50, 40, 0.22);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0s linear 0s, transform 0.2s ease;
+
+  &:hover { transform: scale(1.06); }
+}
+
+.ls.is-home .ls-home {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.ls-arrow {
+  width: 40px;
+  height: 40px;
+  background: var(--ls-mint-strong);
+
+  &:hover { background: #bfe3d6; }
+
+  &[aria-disabled='true'] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--ls-mint);
+  }
+}
+
+// Panel ------------------------------------------------------------------
+
+.ls-panel {
+  position: relative;
+  z-index: 2;
+  margin: -1.5rem 0.75rem 0.75rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(20, 60, 50, 0.2), 0 3px 10px rgba(20, 60, 50, 0.1);
+}
+
+.ls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.ls-count {
+  color: var(--ls-teal);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ls-content {
+  transition: opacity 0.2s ease;
+
+  &.is-fading { opacity: 0; }
+}
+
+.ls-art {
+  margin: 0;
+}
+
+.ls-art-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ls .ls-title,
+.ls-list .ls-title {
+  margin: 0.9rem 0 0.35rem;
+  color: #111;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: clamp(1.1rem, 2.4cqw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ls .ls-sub,
+.ls-list .ls-sub {
+  margin: 0 0 0.5rem;
+  color: var(--ls-teal-dark);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+
+  &[hidden] { display: none; }
+}
+
+.ls .ls-text,
+.ls-list .ls-text {
+  margin: 0;
+  color: #1c1c1c;
+  font-size: clamp(0.875rem, 1.6cqw, 1rem);
+  line-height: 1.45;
+}
+
+// Mid-width stacked layout: illustration beside the text so the card stays compact.
+@container (min-width: 480px) and (max-width: 639.98px) {
+  .ls-content {
+    display: grid;
+    grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+    column-gap: 1.25rem;
+    align-content: start;
+  }
+
+  .ls-art { grid-row: 1 / span 3; }
+  .ls .ls-title { margin-top: 0; }
+}
+
+// Text fallback list below the interactive: illustration on the left, text on the right.
+.ls-list {
+  margin: 1rem 0 0.25rem;
+
+  .ls-row {
+    display: grid;
+    grid-template-columns: minmax(7rem, 28%) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1rem 0;
+    border-top: 1px solid #d5e5e0;
+  }
+
+  .ls-row:first-child { border-top: 0; }
+
+  .ls-row-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .ls-title { margin-top: 0; font-size: 1.1rem; }
+  .ls-text { font-size: 0.875rem; }
+  p { margin-bottom: 0; }
+  .ls-sub { margin-bottom: 0.5rem; }
+}
+
+@media (max-width: 30rem) {
+  .ls-list .ls-row { grid-template-columns: 1fr; gap: 0.75rem; }
+}
+
+// Side panel layout: the map fills the area, the panel floats over its right edge.
+@container (min-width: 640px) {
+  .ls-map { min-height: 38rem; }
+
+  .ls-stage {
+    flex-basis: calc(100% - var(--ls-panel-w) - 2 * var(--ls-inset));
+    width: calc(100% - var(--ls-panel-w) - 2 * var(--ls-inset));
+  }
+
+  .ls-panel {
+    position: absolute;
+    top: var(--ls-inset);
+    right: var(--ls-inset);
+    bottom: var(--ls-inset);
+    width: var(--ls-panel-w);
+    margin: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ls-stage { transition: none; }
+  .ls-marker::before { animation: none; }
+  .ls-marker span,
+  .ls-home,
+  .ls-arrow { transition: none; }
+}

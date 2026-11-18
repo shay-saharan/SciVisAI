@@ -1,0 +1,88 @@
+# Single source of truth for the interactive landscape AND the accordion fallback on the homepage.
+# x / y: marker position, as % of the map image (0-100).
+# focus_x / focus_y: the point the map centres on when zoomed to that stop (% of the map image).
+# zoom: scale applied when that stop is active (1 = full map).
+
+map:
+  image: /Assets/hotspots_map/Map_compressed.jpg
+  width: 3601
+  height: 3091
+  alt: "Illustrated map of a floating island crossed by an orange river. Six landmarks mark areas of consideration for AI in scientific and medical visualization: a tangled cave, an observatory with a telescope, an orange forest, a tower workshop, a clock-topped guild house, and rapids where the river spills off the island."
+
+home:
+  title: Navigating AI in scientific and medical visualization
+  text: Explore the map to consider the opportunities and tensions that shape whether, when, and how we use these technologies.
+  image: /Assets/hotspots_map/Spot_Home.png
+
+stops:
+  - id: confidentiality
+    number: 1
+    title: The Cave of Confidentiality
+    subtitle: Rights, Privacy & Accountability
+    text: Using AI raises questions about whose work, information, and permissions are involved. Consider copyright, consent, ownership, confidentiality, and disclosure, as well as who takes responsibility for the decisions and outcomes of AI-assisted work.
+    image: /Assets/hotspots_map/Spot1_Confidentiality.png
+    x: 48.8
+    y: 15.1
+    focus_x: 50
+    focus_y: 28
+    zoom: 2.6
+
+  - id: observatory
+    number: 2
+    title: The Observatory of Truth
+    subtitle: Accuracy & Scientific Integrity
+    text: AI-generated content can look convincing. Consider how you evaluate accuracy, verify details, distinguish evidence from plausible invention, and decide whether an output is something you can confidently defend.
+    image: /Assets/hotspots_map/Spot2_Observatory.png
+    x: 16.5
+    y: 46.1
+    focus_x: 29
+    focus_y: 42
+    zoom: 2.6
+
+  - id: forest
+    number: 3
+    title: The Forest of Consequences
+    subtitle: Social & Environmental Impact
+    text: AI tools have consequences. Consider the energy, water, infrastructure, and resources they require, alongside broader questions of access, economic benefit, and who bears the costs of their development and use.
+    image: /Assets/hotspots_map/Spot3_Forest.png
+    x: 29.3
+    y: 74.6
+    focus_x: 36
+    focus_y: 63
+    zoom: 2.4
+
+  - id: atelier
+    number: 4
+    title: The Keeper’s Atelier
+    subtitle: Creative Practice & Human Judgment
+    text: AI can introduce new creative possibilities, but it can also reshape how we make decisions along the way. Consider what you value about your creative process, where human judgment matters, and what you are willing to delegate.
+    image: /Assets/hotspots_map/Spot4_Keeper.png
+    x: 80
+    y: 29.4
+    focus_x: 74
+    focus_y: 32
+    zoom: 2.6
+
+  - id: guild
+    number: 5
+    title: The Guild of Makers
+    subtitle: Professional Practice & Expertise
+    text: AI is changing how scientific visualization is produced, taught, and valued. Consider how tools reshape workflows, what skills remain essential, how professional roles evolve, and who gets to decide when and how AI is used.
+    image: /Assets/hotspots_map/Spot5_Guild.png
+    x: 84.7
+    y: 51.7
+    focus_x: 76
+    focus_y: 54
+    zoom: 2.6
+
+  - id: rapids
+    number: 6
+    title: The Rapids of Change
+    subtitle: The Unknown
+    text: AI is evolving faster than our understanding of its implications. Consider what remains uncertain, what questions we have yet to ask, and how we balance the excitement of new possibilities with the need for caution, reflection, and responsible progress.
+    image: /Assets/hotspots_map/Spot6_Rapids.png
+    x: 74
+    y: 76.5
+    focus_x: 69
+    focus_y: 76
+    zoom: 2.6

@@ -1,0 +1,28 @@
+{%- assign ls = site.data.landscape -%}
+{%- assign ls_stops = ls.stops | sort: "number" -%}
+<section class="ls is-home" id="landscape" data-landscape data-base="{{ '' | relative_url }}" aria-label="Interactive landscape map" hidden>
+<div class="ls-map">
+<div class="ls-stage" style="aspect-ratio: {{ ls.map.width }} / {{ ls.map.height }};">
+<img class="ls-image" src="{{ ls.map.image | relative_url }}" width="{{ ls.map.width }}" height="{{ ls.map.height }}" alt="{{ ls.map.alt | escape }}" draggable="false">
+{%- for s in ls_stops %}
+<div class="ls-pin" style="left: {{ s.x }}%; top: {{ s.y }}%;"><button type="button" class="ls-marker" data-stop="{{ s.number }}" aria-label="{{ s.number }}. {{ s.title | escape }}"><span aria-hidden="true">{{ s.number }}</span></button></div>
+{%- endfor %}
+</div>
+<button type="button" class="ls-home" aria-label="Back to the full map"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 11.2 12 3.5l9 7.7M5.5 9.8V20h4.6v-5.6h3.8V20h4.6V9.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<aside class="ls-panel" aria-label="Landscape details">
+<div class="ls-bar">
+<button type="button" class="ls-arrow ls-prev" aria-label="Previous stop" aria-disabled="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<span class="ls-count"></span>
+<button type="button" class="ls-arrow ls-next" aria-label="Next stop" aria-disabled="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<div class="ls-content" aria-live="polite" aria-atomic="true">
+<div class="ls-art"><img class="ls-art-img" src="{{ ls.home.image | relative_url }}" alt=""></div>
+<div class="ls-title" role="heading" aria-level="4">{{ ls.home.title }}</div>
+<p class="ls-sub" hidden></p>
+<p class="ls-text">{{ ls.home.text }}</p>
+</div>
+</aside>
+<script type="application/json" id="landscape-data">{{ ls | jsonify }}</script>
+</section>
+<script src="{{ '/Assets/js/landscape.js' | relative_url }}" defer></script>
